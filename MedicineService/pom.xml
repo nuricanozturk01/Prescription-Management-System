@@ -10,7 +10,7 @@
     </parent>
     <groupId>nuricanozturk.dev</groupId>
     <artifactId>MedicineService</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>MedicineService</name>
     <description>MedicineService</description>
     <properties>

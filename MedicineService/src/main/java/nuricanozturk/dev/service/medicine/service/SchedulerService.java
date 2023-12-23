@@ -18,7 +18,7 @@ public class SchedulerService
     private final FileDownloader m_fileDownloader;
 
     //@Scheduled(cron = "00 01 * * 0")
-    @Scheduled(cron = "0 29 23 * * SAT")
+    @Scheduled(cron = "0 02 00 * * SUN")
     public void scheduleTask()
     {
         m_fileDownloader.downloadFile();

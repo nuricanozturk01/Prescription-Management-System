@@ -17,6 +17,7 @@ public class ExcelReader
 {
     public void readExcelFile(String filePath, Consumer<Medicine> consumer)
     {
+        // Try with resources closes the file automatically
         try (var file = new FileInputStream(filePath); var workbook = new XSSFWorkbook(file))
         {
             var sheet = workbook.getSheetAt(0);
@@ -52,15 +53,4 @@ public class ExcelReader
         }
         return "";
     }
-
-    /*public static void main(String[] args) throws IOException
-    {
-        var reader = new ExcelReader();
-        var medicines = reader.readExcelFile("latest_medicine_list.xlsx");
-
-        for (var medicine : medicines)
-        {
-            System.out.println(medicine);
-        }
-    }*/
 }
