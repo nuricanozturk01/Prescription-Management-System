@@ -1,0 +1,24 @@
+<div class="content-container">
+  <div class="user-form">
+    <div class="d-flex flex-column align-items-center">
+      <img class="mb-4 cop-logo" ngSrc="../assets/logo.png" alt="" height="1024" width="1024">
+      <form>
+        <div class="user-info form-floating">
+          <input type="text" class="form-control"
+                 id="floatingInput" placeholder="username">
+          <label for="floatingInput">username</label>
+        </div>
+        <div class="user-info form-floating">
+          <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+          <label for="floatingPassword">Password</label>
+        </div>
+        <div class="buttons-container d-flex justify-content-center align-items-center">
+          <button (click)="handleLoginButton()" class="login-btn btn btn-primary" type="submit">Log In</button>
+        </div>
+      </form>
+
+    </div>
+
+  </div>
+</div>
+

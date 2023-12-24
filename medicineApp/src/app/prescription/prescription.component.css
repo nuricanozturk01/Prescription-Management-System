@@ -1,0 +1,103 @@
+.container {
+  overflow-y: auto;
+  color: #E5E4E2;
+  height: 700px;
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 1rem;
+  background: #272727;
+  border-radius: 8px;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  border: 1px solid #1b7a1a;
+}
+
+label, input, button {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+input, button {
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 4px;
+  background: #222;
+  color: #ddd;
+  box-shadow: 0 1px 2px 0 #1b7a1a;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+input:focus {
+  outline: none;
+  border-color: #1b7a1a;
+}
+
+button {
+  font-size: 10pt;
+  min-width: 30px;
+  border-radius: 15px;
+  background-color: #272727;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  border: 1px solid #1b7a1a;
+  font-weight: 700;
+  padding: 5px;
+  color: #E5E4E2 !important;
+
+}
+.header {
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+.medicines {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.medicines th, .medicines td {
+  border: 1px solid #555;
+  padding: 8px;
+  text-align: left;
+}
+
+.medicines th {
+  background: #444;
+}
+
+.total {
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  /*border: 1px solid #1b7a1a;*/
+  color: #E5E4E2;
+  text-align: left;
+  margin-top: 10px;
+}
+
+.btn {
+  font-size: 10pt;
+  margin-top: 25px;
+  min-width: 100px;
+  width: auto;
+  border-radius: 15px;
+  background-color: #272727;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  border: 1px solid #1b7a1a;
+  font-weight: 700;
+  padding: 5px;
+  text-align: center;
+  align-items: center;
+  color: #E5E4E2 !important;
+  justify-content: center;
+}
+
+.justify-content-between {
+  justify-content: space-between !important;
+}
+
+.buttons-container {
+  float: left;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+}
