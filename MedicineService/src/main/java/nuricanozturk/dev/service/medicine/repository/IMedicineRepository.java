@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IMedicineRepository extends JpaRepository<Medicine, String>
 {
-
+    Iterable<Medicine> findByNameContainsIgnoreCase(String name);
 }

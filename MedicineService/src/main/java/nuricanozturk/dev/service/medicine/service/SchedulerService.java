@@ -22,8 +22,8 @@ public class SchedulerService
     private final FileDownloader m_fileDownloader;
 
 
-    @Scheduled(cron = "0 50 22 * * SUN")
-    //@Scheduled(cron = "0 00 02 * * TUE")
+    //@Scheduled(cron = "0 50 22 * * SUN")
+    @Scheduled(cron = "0 00 02 * * TUE")
     public void scheduleTask()
     {
         m_fileDownloader.downloadFile();
