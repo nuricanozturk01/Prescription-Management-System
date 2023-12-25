@@ -1,31 +1,25 @@
 package nuricanozturk.dev.service.medicine.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.azure.spring.data.cosmos.core.mapping.Container;
+import com.azure.spring.data.cosmos.core.mapping.PartitionKey;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.Id;
 
 @Getter
 @Setter
 @NoArgsConstructor
-@Entity
-@Table(name = "medicine")
+@Container(containerName = "medicine")
 public class Medicine
 {
     @Id
     private String name;
-    @Column(name = "barcode")
+    @PartitionKey
     private String barcode;
-    @Column(name = "atc_code")
     private String atcCode;
-    @Column(name = "atc_name")
     private String atcName;
-    @Column(name = "firm_name")
     private String firmName;
-    @Column(name = "prescription_type")
     private String prescriptionType;
 
     public Medicine(String name, String barcode, String atcCode, String atcName, String firmName, String prescriptionType)

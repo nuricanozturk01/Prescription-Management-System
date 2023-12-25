@@ -1,12 +1,15 @@
 package nuricanozturk.dev.service.medicine.repository;
 
 
+import com.azure.spring.data.cosmos.core.query.CosmosPageImpl;
+import com.azure.spring.data.cosmos.core.query.CosmosPageRequest;
+import com.azure.spring.data.cosmos.repository.CosmosRepository;
 import nuricanozturk.dev.service.medicine.entity.Medicine;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface IMedicineRepository extends JpaRepository<Medicine, String>
+public interface IMedicineRepository extends CosmosRepository<Medicine, String>
 {
-    Iterable<Medicine> findByNameContainsIgnoreCase(String name);
+
+    CosmosPageImpl<Medicine> findByNameContainsIgnoreCase(String name, CosmosPageRequest pageable);
 }

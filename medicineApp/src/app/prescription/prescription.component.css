@@ -1,7 +1,7 @@
 .container {
   overflow-y: auto;
   color: #E5E4E2;
-  height: 700px;
+  max-height: 750px;
   max-width: 600px;
   margin: 50px auto;
   padding: 1rem;
@@ -11,14 +11,24 @@
   border: 1px solid #1b7a1a;
 }
 
-label, input, button {
+button {
   display: block;
   width: 100%;
-  margin-bottom: 10px;
 }
 
-input, button {
-  margin-bottom: 20px;
+input {
+  margin-bottom: 10px;
+  width: 100%;
+  padding: 3px;
+  border-radius: 4px;
+  background: #222;
+  color: #ddd;
+  box-shadow: 0 1px 2px 0 #1b7a1a;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+button {
+  margin-bottom: 5px;
   padding: 10px;
   border-radius: 4px;
   background: #222;
@@ -44,15 +54,18 @@ button {
   color: #E5E4E2 !important;
 
 }
+
 .header {
   align-items: center;
   text-align: center;
   justify-content: center;
 }
+
 .medicines {
   border-collapse: collapse;
   width: 100%;
   margin-top: 20px;
+
 }
 
 .medicines th, .medicines td {
@@ -69,13 +82,13 @@ button {
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
   /*border: 1px solid #1b7a1a;*/
   color: #E5E4E2;
-  text-align: left;
+  text-align: center;
   margin-top: 10px;
 }
 
 .btn {
   font-size: 10pt;
-  margin-top: 25px;
+  margin-top: 10px;
   min-width: 100px;
   width: auto;
   border-radius: 15px;
@@ -100,4 +113,10 @@ button {
   display: flex;
   justify-content: space-between;
   margin-top: auto;
+}
+
+.table-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
