@@ -2,7 +2,6 @@ package nuricanozturk.dev.service.prescription.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import nuricanozturk.dev.dto.*;
-import nuricanozturk.dev.service.prescription.service.abstraction.IPrescriptionService;
 import nuricanozturk.dev.service.prescription.service.abstraction.IPrescriptionServiceV1;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.messaging.support.MessageBuilder;
@@ -33,7 +32,14 @@ public class PrescriptionServiceV1 implements IPrescriptionServiceV1
     @Override
     public ResponseDTO findCustomerByIdentityNumber(String identityNumber)
     {
-        return m_environmentConfig.getCustomerService().findCustomerByIdentityNumber(identityNumber);
+        var customer = m_environmentConfig.getCustomerService().findCustomerByIdentityNumber(identityNumber);
+
+        System.out.println(customer.data());
+
+        if (customer.data() == null)
+            return new ResponseDTO(-1, -1, -1, "Customer not found.");
+
+        return customer;
     }
 
     @Override

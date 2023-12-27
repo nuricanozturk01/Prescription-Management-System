@@ -6,3 +6,15 @@ body{
     padding: 0;
     text-align: center;
 }
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(120,120,120);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar {
+
+  width: 8px;
+  background-color: #272727 !important;
+
+}
