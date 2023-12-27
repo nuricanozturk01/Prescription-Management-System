@@ -6,6 +6,7 @@ import nuricanozturk.dev.service.prescription.dto.AuthenticationResponse;
 import nuricanozturk.dev.service.prescription.dto.LoginDTO;
 import nuricanozturk.dev.service.prescription.entity.Pharmacy;
 import nuricanozturk.dev.service.prescription.service.abstraction.IAuthenticationService;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
 
@@ -55,4 +56,10 @@ public class AuthenticationService implements IAuthenticationService
 
         return new ResponseDTO(1, 1, 1, savedPharmacy);
     }
+
+    @CacheEvict(value = "pharmacy", key = "#username")
+    public void evictCache(String username)
+    {
+    }
+
 }

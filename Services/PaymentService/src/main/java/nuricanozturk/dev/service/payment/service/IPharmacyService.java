@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@FeignClient(name = "pharmacy-service", url = "https://prescription-server.azurewebsites.net/api/v2/prescription")
+@FeignClient(name = "pharmacy-service", url = "${pharmacy.service.url}")
 public interface IPharmacyService
 {
     @GetMapping("/find/pharmacies/all")

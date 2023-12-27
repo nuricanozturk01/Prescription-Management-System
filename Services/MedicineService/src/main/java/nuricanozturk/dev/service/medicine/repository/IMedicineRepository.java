@@ -10,6 +10,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IMedicineRepository extends CosmosRepository<Medicine, String>
 {
-
     CosmosPageImpl<Medicine> findByNameContainsIgnoreCase(String name, CosmosPageRequest pageable);
 }

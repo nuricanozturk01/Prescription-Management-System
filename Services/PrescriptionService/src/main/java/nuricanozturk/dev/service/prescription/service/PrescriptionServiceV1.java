@@ -1,6 +1,5 @@
 package nuricanozturk.dev.service.prescription.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import nuricanozturk.dev.dto.*;
 import nuricanozturk.dev.service.prescription.service.abstraction.IPrescriptionServiceV1;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,6 +22,7 @@ public class PrescriptionServiceV1 implements IPrescriptionServiceV1
         m_environmentConfig = environmentConfig;
     }
 
+
     @Override
     public ResponseDTO getMedicineByName(String name, int page)
     {
@@ -34,13 +34,12 @@ public class PrescriptionServiceV1 implements IPrescriptionServiceV1
     {
         var customer = m_environmentConfig.getCustomerService().findCustomerByIdentityNumber(identityNumber);
 
-        System.out.println(customer.data());
-
         if (customer.data() == null)
             return new ResponseDTO(-1, -1, -1, "Customer not found.");
 
         return customer;
     }
+
 
     @Override
     public ResponseDTO findCustomersByIdentityNumberContaining(String identityNumber, int page)
@@ -50,23 +49,19 @@ public class PrescriptionServiceV1 implements IPrescriptionServiceV1
 
 
     @Override
-    public ResponseDTO createPrescription(CreatePrescriptionDTO createPrescriptionDTO) throws JsonProcessingException
+    public ResponseDTO createPrescription(CreatePrescriptionDTO createPrescriptionDTO)
     {
-        var customerResponse = m_environmentConfig.getCustomerService().findCustomerByIdentityNumber(createPrescriptionDTO.customerIdentityNumber());
-      /*  var userDTO = m_objectMapper.readValue(customerResponse.data().toString(), CustomerDTO.class);
+        var pharmacy = m_environmentConfig.getPharmacyRepository()
+                .findPharmacyByUsername(createPrescriptionDTO.pharmacyUsername());
 
-        if (userDTO == null)
-            return new ResponseDTO(-1, -1, -1, "Customer not found.");*/
-
-        var pharmacy = m_environmentConfig.getPharmacyRepository().findPharmacyByUsername(createPrescriptionDTO.pharmacyUsername());
-
-        var totalCost = createPrescriptionDTO.medicines().stream().map(MedicineDTO::price).reduce(Double::sum);
+        var totalCost = createPrescriptionDTO.medicines()
+                .stream()
+                .map(MedicineDTO::price)
+                .reduce(Double::sum);
 
         var paymentDTO = new PaymentDTO(pharmacy.get().getName(), pharmacy.get().getUsername(), createPrescriptionDTO.medicines(), totalCost.get());
 
-        var msg = MessageBuilder
-                .withPayload(paymentDTO)
-                .build();
+        var msg = MessageBuilder.withPayload(paymentDTO).build();
 
         m_environmentConfig.getSqsTemplate().send(m_queueName, msg);
 
@@ -77,7 +72,8 @@ public class PrescriptionServiceV1 implements IPrescriptionServiceV1
     @Override
     public List<PharmacyDTO> findAllPharmacies()
     {
-        return stream(m_environmentConfig.getPharmacyRepository().findAll().spliterator(), true).map(p -> new PharmacyDTO(p.getName(), p.getUsername(), p.getEmail())).toList();
+        return stream(m_environmentConfig.getPharmacyRepository().findAll().spliterator(), true)
+                .map(p -> new PharmacyDTO(p.getName(), p.getUsername(), p.getEmail()))
+                .toList();
     }
-
 }

@@ -30,8 +30,8 @@ public class ZScoreSchedulerService
     @Value("${prescription.service.unique-key}")
     private String m_uniqueKey;
 
-    //@Scheduled(cron = "0 37 01 * * *", zone = "Europe/Istanbul")
-    @Scheduled(cron = "0 00 13 * * *", zone = "Europe/Istanbul")
+
+    @Scheduled(cron = "0 34 21 * * *", zone = "Europe/Istanbul")
     //@Scheduled(cron = "0 */5 * * * ?", zone = "Europe/Istanbul")
     public void schedule()
     {
@@ -42,7 +42,6 @@ public class ZScoreSchedulerService
 
     private void calculateZScoreAndSendEmail(PharmacyDTO pharmacy)
     {
-        //var date = LocalDate.now().minusDays(1L);
         var istanbulZone = ZoneId.of("Europe/Istanbul");
 
         var dateOneDayAgoInIstanbul = LocalDate.now(istanbulZone).minusDays(1L);
@@ -53,7 +52,9 @@ public class ZScoreSchedulerService
 
         var zScore = calculateZScore(payments);
 
-        var emailTopic = new EmailTopic(pharmacy.name() + " Z-Score", pharmacy.email(), format("Total Amount is: %.2f TL", zScore));
+        var emailTopic = new EmailTopic(pharmacy.name() + " Z-Score",
+                pharmacy.email(),
+                format("Total Amount is: %.2f TL", zScore));
 
         m_emailService.sendEmail(emailTopic);
     }
