@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {getUser} from "../services/login.service";
 import {CreatePrescriptionDTO} from "../dto/CreatePrescriptionDTO";
 import {PharmacyService} from "../services/pharmacy.service";
@@ -9,7 +9,7 @@ import {MedicineDTO} from "../dto/MedicineDTO";
   templateUrl: './prescription.component.html',
   styleUrls: ['./prescription.component.css']
 })
-export class PrescriptionComponent {
+export class PrescriptionComponent  implements OnInit{
   public prescriptionDTO = new CreatePrescriptionDTO()
 
   pharmacyName = getUser().pharmacyName
@@ -22,6 +22,9 @@ export class PrescriptionComponent {
   page: number = 1
   totalCost: number = 0
 
+  ngOnInit() {
+    console.log(getUser())
+  }
   constructor(private pharmacyService: PharmacyService) {
   }
 
@@ -63,8 +66,6 @@ export class PrescriptionComponent {
     this.pharmacyService.findMedicines(this.searchMedicineName, ++this.page).subscribe((result: any) => {
       if (result !== null && result.length > 0) {
         this.medicines = this.medicines.concat(result);
-      } else {
-        alert("No more medicines found")
       }
     });
   }
@@ -78,6 +79,11 @@ export class PrescriptionComponent {
   }
 
   handleSubmitButton() {
+    if (this.cartMedicines.length === 0 || this.prescriptionDTO.customerIdentityNumber === "" || this.prescriptionDTO.customerIdentityNumber === undefined
+      || this.prescriptionDTO.customerFullName === "" || this.prescriptionDTO.customerFullName === undefined || this.totalCost === 0) {
+      alert("Please fill all the fields")
+      return
+    }
     this.prescriptionDTO.medicines = this.cartMedicines
     this.prescriptionDTO.totalPrice = this.totalCost
     this.prescriptionDTO.pharmacyUsername = getUser().pharmacyUsername

@@ -16,7 +16,7 @@ export class LoginService {
 
   sendLoginRequest(loginModel: LoginDTO): Observable<boolean> {
 
-    return this.http.post('http://localhost:4041/api/auth/login', loginModel)
+    return this.http.post('https://api-gateway-pharmacy-system.azure-api.net/api/auth/login', loginModel)
       .pipe(
         map((response: any) => {
           if (response.page === -1) {

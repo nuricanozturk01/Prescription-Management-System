@@ -14,8 +14,8 @@ export class PharmacyService {
   }
 
   sendSearchCustomer(identityNumber: string): Observable<any> {
-
-    return this.http.get(`http://localhost:4041/api/v2/prescription/find/identity?id=${identityNumber}`, {headers: {Authorization: getUser().token}})
+    return this.http.get(`https://api-gateway-pharmacy-system.azure-api.net/api/v1/prescription/find/identity?id=${identityNumber}`,
+      {headers: {Authorization: "Bearer " + getUser().token}})
       .pipe(
         map((response: any) => {
           if (response.page === 1) {
@@ -33,7 +33,8 @@ export class PharmacyService {
 
 
   findMedicines(word: string, page: number): Observable<any> {
-    return this.http.get(`http://localhost:4041/api/v2/prescription/find/medicine?name=${word}&page=${page}`, {headers: {Authorization: getUser().token}})
+    return this.http.get(`https://api-gateway-pharmacy-system.azure-api.net/api/v1/prescription/find/medicine?name=${word}&page=${page}`,
+      {headers: {Authorization: "Bearer " + getUser().token}})
       .pipe(
         map((response: any) => {
           if (response.page > 0) {
@@ -52,7 +53,8 @@ export class PharmacyService {
 
 
   submitPrescription(prescription: CreatePrescriptionDTO): Observable<any> {
-    return this.http.post("http://localhost:4041/api/v2/prescription/create", prescription, {headers: {Authorization: getUser().token}})
+    return this.http.post("https://api-gateway-pharmacy-system.azure-api.net/api/v1/prescription/create", prescription,
+      {headers: {Authorization: "Bearer " + getUser().token}})
       .pipe(
         map((response: any) => {
           if (response.page > 0) {
