@@ -7,5 +7,5 @@ import nuricanozturk.dev.service.prescription.dto.LoginDTO;
 public interface IAuthenticationService
 {
     ResponseDTO createPharmacy(CreatePharmacyDTO createPharmacyDTO);
-    String login(LoginDTO loginDTO);
+    ResponseDTO login(LoginDTO loginDTO);
 }

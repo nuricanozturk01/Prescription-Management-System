@@ -1,5 +1,6 @@
 package nuricanozturk.dev.service.prescription.config;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -12,6 +13,12 @@ import org.springframework.security.config.annotation.web.configurers.AuthorizeH
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.util.Collections;
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -31,6 +38,10 @@ public class SecurityConfig
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity security) throws Exception
     {
+        security.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+               // .cors(corsCustomizer -> corsCustomizer.configurationSource(this::corsConfigurer))
+                .csrf(AbstractHttpConfigurer::disable);
+
         return security
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(this::authorizationRequests)
@@ -55,5 +66,37 @@ public class SecurityConfig
         requests.requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("api/v2/**").permitAll()
                 .requestMatchers("/api/v1/**").authenticated();
+    }
+
+    private CorsConfiguration setCorsConfig(HttpServletRequest httpServletRequest)
+    {
+        CorsConfiguration config = new CorsConfiguration();
+        //config.setAllowedOriginPatterns("*");
+        config.setAllowedMethods(Collections.singletonList("*"));
+        config.setAllowCredentials(true);
+        config.setAllowedHeaders(Collections.singletonList("*"));
+        config.setExposedHeaders(List.of("Authorization"));
+        config.setMaxAge(3600L);
+        return config;
+    }
+
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                CorsConfiguration config = new CorsConfiguration();
+                config.setAllowCredentials(true);
+                config.addAllowedOrigin("*"); // Tüm kaynaklardan gelen istekleri kabul etmek için "*"
+                config.addAllowedHeader("*"); // Tüm HTTP başlıklarını kabul etmek için "*"
+                config.addAllowedMethod("*"); // Tüm HTTP metotlarını kabul etmek için "*"
+                config.addExposedHeader("Authorization");
+
+                registry.addMapping("/**")
+                        .allowedOrigins("*")
+                        .allowedMethods("*")
+                        .allowedHeaders("*");
+            }
+        };
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
@@ -17,10 +18,10 @@ import java.util.function.Consumer;
 @Lazy
 public class ExcelReader
 {
-    public void readExcelFile(String filePath, Consumer<Medicine> consumer)
+    public void readExcelFile(Path filePath, Consumer<Medicine> consumer)
     {
         // Try with resources closes the file automatically
-        try (var file = new FileInputStream(filePath); var workbook = new XSSFWorkbook(file))
+        try (var file = new FileInputStream(filePath.toFile()); var workbook = new XSSFWorkbook(file))
         {
             var sheet = workbook.getSheetAt(0);
 

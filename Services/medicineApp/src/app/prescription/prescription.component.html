@@ -1,13 +1,13 @@
 <div class="container mt-5 p-5">
   <div class="row mb-2">
-    <input type="text" id="pharmacy" disabled value="GUNEY Eczane">
-    <input type="text" id="tc-id" placeholder="Identity Number">
+    <input type="text" id="pharmacy" disabled value="{{pharmacyName}}">
+    <input type="number" id="tc-id" placeholder="Identity Number" min="10000000000" value="10000000000">
     <div class="buttons-container d-flex justify-content-center mb-3">
       <button class="btn btn-dark">Search</button>
     </div>
   </div>
   <div>
-    <input type="text" id="fullname" disabled placeholder="Full Name" value="Nuri Can OZTURK">
+    <input type="text" id="fullname" disabled placeholder="{{customerPlaceholder}}" value="{{customer}}">
   </div>
   <div>
     <input type="text" id="medicine" placeholder="Medicine">

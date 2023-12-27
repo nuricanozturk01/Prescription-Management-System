@@ -8,6 +8,8 @@ import {PrescriptionComponent} from './prescription/prescription.component';
 import {RouterModule} from "@angular/router";
 import {AppRoutingModule} from "./app-routing.module";
 import { LoginComponent } from './login/login.component';
+import {HttpClientModule} from "@angular/common/http";
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -19,10 +21,12 @@ import { LoginComponent } from './login/login.component';
   exports: [RouterModule
   ],
   imports: [
+    HttpClientModule,
     AppRoutingModule,
     BrowserModule,
     NgbModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

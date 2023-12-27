@@ -10,6 +10,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -29,7 +30,9 @@ public class ZScoreSchedulerService
     @Value("${prescription.service.unique-key}")
     private String m_uniqueKey;
 
-    @Scheduled(cron = "0 37 01 * * *", zone = "Europe/Istanbul")
+    //@Scheduled(cron = "0 37 01 * * *", zone = "Europe/Istanbul")
+    @Scheduled(cron = "0 00 13 * * *", zone = "Europe/Istanbul")
+    //@Scheduled(cron = "0 */5 * * * ?", zone = "Europe/Istanbul")
     public void schedule()
     {
         var pharmacies = m_pharmacyService.findAllPharmacies(m_uniqueKey);
@@ -39,9 +42,14 @@ public class ZScoreSchedulerService
 
     private void calculateZScoreAndSendEmail(PharmacyDTO pharmacy)
     {
-        var date = LocalDate.now().minusDays(1L);
-        System.out.println(date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-        var payments = m_paymentService.findAllByCreationDateAndPharmacyUsername(date, pharmacy.username());
+        //var date = LocalDate.now().minusDays(1L);
+        var istanbulZone = ZoneId.of("Europe/Istanbul");
+
+        var dateOneDayAgoInIstanbul = LocalDate.now(istanbulZone).minusDays(1L);
+
+        System.out.println(dateOneDayAgoInIstanbul.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+
+        var payments = m_paymentService.findAllByCreationDateAndPharmacyUsername(dateOneDayAgoInIstanbul, pharmacy.username());
 
         var zScore = calculateZScore(payments);
 

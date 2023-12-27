@@ -1,13 +1,15 @@
 package nuricanozturk.dev.service.prescription.service;
 
-import callofproject.dev.service.jwt.JwtUtil;
 import nuricanozturk.dev.dto.CreatePharmacyDTO;
 import nuricanozturk.dev.dto.ResponseDTO;
+import nuricanozturk.dev.service.prescription.dto.AuthenticationResponse;
 import nuricanozturk.dev.service.prescription.dto.LoginDTO;
 import nuricanozturk.dev.service.prescription.entity.Pharmacy;
 import nuricanozturk.dev.service.prescription.service.abstraction.IAuthenticationService;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
+
+import static callofproject.dev.service.jwt.JwtUtil.generateToken;
 
 @Service
 public class AuthenticationService implements IAuthenticationService
@@ -19,14 +21,15 @@ public class AuthenticationService implements IAuthenticationService
         m_environmentConfig = environmentConfig;
     }
 
-    public String login(LoginDTO loginDTO)
+    public ResponseDTO login(LoginDTO loginDTO)
     {
         var auth = m_environmentConfig.getAuthenticationProvider().authenticate(new UsernamePasswordAuthenticationToken(loginDTO.username(), loginDTO.password()));
 
         if (!auth.isAuthenticated())
-            return "Invalid credentials!";
-
-        return JwtUtil.generateToken(loginDTO.username());
+            return new ResponseDTO(-1, -1, -1, "Invalid username or password.");
+        var pharmacy = m_environmentConfig.getPharmacyRepository().findPharmacyByUsername(loginDTO.username()).get();
+        return new ResponseDTO(1, 1, 1, new AuthenticationResponse(pharmacy.getName(),
+                pharmacy.getUsername(), generateToken(loginDTO.username())));
     }
 
     public ResponseDTO createPharmacy(CreatePharmacyDTO createPharmacyDTO)

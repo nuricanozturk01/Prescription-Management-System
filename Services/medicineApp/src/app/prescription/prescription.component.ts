@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {getUser} from "../services/login.service";
 
 @Component({
   selector: 'app-prescription',
@@ -6,5 +7,7 @@ import {Component} from '@angular/core';
   styleUrls: ['./prescription.component.css']
 })
 export class PrescriptionComponent {
-
+  pharmacyName = getUser().pharmacyName
+  customerPlaceholder = "Please enter the identity Number of the customer then search"
+  customer = ""
 }
