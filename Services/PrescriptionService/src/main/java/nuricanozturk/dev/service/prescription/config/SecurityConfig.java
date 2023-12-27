@@ -65,7 +65,7 @@ public class SecurityConfig
     {
         requests.requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("api/v2/**").permitAll()
-                .requestMatchers("/api/v1/**").authenticated();
+                .requestMatchers("/api/v1/**").authenticated()  ;
     }
 
     private CorsConfiguration setCorsConfig(HttpServletRequest httpServletRequest)
