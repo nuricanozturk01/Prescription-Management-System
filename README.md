@@ -37,12 +37,12 @@ report to the pharmacy.
 
 ## Architecture Description
 
-## API Gateway
+### API Gateway
 
 - **API Gateway**: Serves as the entry point for users or other systems to access services. Routes all incoming
   requests.
 
-## Microservices
+### Microservices
 
 - **Prescription/Pharmacy Service**: Manages prescriptions and pharmacy-related operations. Utilizes JWT (JSON Web
   Token) for secure communication.
@@ -52,14 +52,14 @@ report to the pharmacy.
   pharmacies.
 - **User/Customer Service**: Administers user and customer data. Capable of retrieving user information by ID searches.
 
-## Databases
+### Databases
 
 - **Medicine Azure NoSQL DB**: Stores medicine data.
 - **Prescription Azure NoSQL DB**: Stores prescription data.
 - **Customer Azure NoSQL DB**: Stores customer data.
 - **Payment Azure NoSQL DB**: Stores payment transaction data.
 
-## Other Components
+### Other Components
 
 - **Feign Client**: A Java HTTP client library for microservices communication over HTTP.
 - **Payment Queue (Amazon SQS)**: Queues payments using Amazon Simple Queue Service (SQS) for message queue management.
