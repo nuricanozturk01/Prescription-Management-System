@@ -33,6 +33,7 @@ medicines, they press the "Save" button to create the prescription. Every night 
 report to the pharmacy.
 
 ## System Architecture Diagram
+![se_4458_architecture](https://github.com/nuricanozturk01/Prescription-Management-System/assets/62218588/0c61c89e-c9b6-4de2-935c-44ae32e9d6db)
 
 ## Architecture Description
 
