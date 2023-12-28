@@ -74,8 +74,35 @@ report to the pharmacy.
 - **Azure:** Microservices, databases, API Gateway
 - **AWS:** Angular, SQS
 
-## ER Diagrams
+## ER Diagrams or Entity
+### User:
+- **customerId**: UUID,
+- **identityNumber**: string,
+- **customerName**: string,
+- **customerSurname**: string
 
+### Medicine:
+- **name**: string,
+- **barcode**: string,
+- **atcCode**: string,
+- **atcName**: string,
+- **firmName**: string,
+- **prescriptionType**: string
+
+### Prescription:
+- **id**: UUID,
+- **name**: string,
+- **username**: string,
+- **email**: string
+- **password**: string (hash)
+
+### Payment:
+- **paymentId**: UUID,
+- **pharmacyUsername**: string,
+- **pharmacyName**: string,
+- **totalPrice**: double,
+- **creationDate**: date
+- **medicines**: Medicine[]
 
 ## Client Designs
 
