@@ -70,5 +70,28 @@ report to the pharmacy.
 - **Spring Mail**: Sends emails using Spring Boot.
 - **Angular**: Frontend framework for client-side development.
 
+## Deployment
+- **Azure:** Microservices, databases, API Gateway
+- **AWS:** Angular, SQS
+
+## ER Diagrams
 
 
+## Client Designs
+
+### Login Page
+
+![login_screen](https://github.com/nuricanozturk01/Prescription-Management-System/assets/62218588/09f1e4b4-100a-4248-8f43-7dc1ce095adb)
+
+### Create Prescription Form
+
+![create_prescription_db](https://github.com/nuricanozturk01/Prescription-Management-System/assets/62218588/217ac363-97b2-4279-8a9b-93c7eda1fd07)
+
+### Pharmacy Z-Score email demonstration:
+![email_example](https://github.com/nuricanozturk01/Prescription-Management-System/assets/62218588/cba78ffe-a7ce-48c1-bdc7-1bfe37e558e4)
+
+### Update Medicines Email Demonstration:
+![update_email](https://github.com/nuricanozturk01/Prescription-Management-System/assets/62218588/d1170e5f-a66e-47e6-8d02-2fb37ab86602)
+
+## Videos
+https://github.com/nuricanozturk01/Prescription-Management-System/assets/62218588/16924ec1-b3d5-44ef-98bf-cb1f2e0eda85
