@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/a1cfd98a-3dab-41fb-83ea-a7238a2715aa/resourceGroups/se-4458-final/providers/Microsoft.Web/sites/pharmacy-management",
+    "appService.deploySubpath": "dist/medicine-app"
+}
