@@ -39,7 +39,7 @@ public class SecurityConfig
     public SecurityFilterChain filterChain(HttpSecurity security) throws Exception
     {
         security.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-               // .cors(corsCustomizer -> corsCustomizer.configurationSource(this::corsConfigurer))
+                // .cors(corsCustomizer -> corsCustomizer.configurationSource(this::corsConfigurer))
                 .csrf(AbstractHttpConfigurer::disable);
 
         return security
@@ -64,8 +64,8 @@ public class SecurityConfig
     private void authorizationRequests(AuthorizeHttpRequestsConfigurer<HttpSecurity>.AuthorizationManagerRequestMatcherRegistry requests)
     {
         requests.requestMatchers("/api/auth/**").permitAll()
-                .requestMatchers("api/v2/**").permitAll()
-                .requestMatchers("/api/v1/**").authenticated()  ;
+                .requestMatchers("api/v2/**").authenticated()
+                .requestMatchers("/api/v1/**").authenticated();
     }
 
     private CorsConfiguration setCorsConfig(HttpServletRequest httpServletRequest)
@@ -81,15 +81,18 @@ public class SecurityConfig
     }
 
     @Bean
-    public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurer() {
+    public WebMvcConfigurer corsConfigurer()
+    {
+        return new WebMvcConfigurer()
+        {
             @Override
-            public void addCorsMappings(CorsRegistry registry) {
+            public void addCorsMappings(CorsRegistry registry)
+            {
                 CorsConfiguration config = new CorsConfiguration();
                 config.setAllowCredentials(true);
-                config.addAllowedOrigin("*"); // Tüm kaynaklardan gelen istekleri kabul etmek için "*"
-                config.addAllowedHeader("*"); // Tüm HTTP başlıklarını kabul etmek için "*"
-                config.addAllowedMethod("*"); // Tüm HTTP metotlarını kabul etmek için "*"
+                config.addAllowedOrigin("*");
+                config.addAllowedHeader("*");
+                config.addAllowedMethod("*");
                 config.addExposedHeader("Authorization");
 
                 registry.addMapping("/**")

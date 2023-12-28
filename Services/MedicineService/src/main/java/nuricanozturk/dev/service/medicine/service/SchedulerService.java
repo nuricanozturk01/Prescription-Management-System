@@ -28,7 +28,7 @@ public class SchedulerService
 
 
     //@Scheduled(cron = "0 17 19 * * MON")
-    @Scheduled(cron = "0 30 13 * * WED", zone = "Europe/Istanbul")
+    @Scheduled(cron = "0 00 03 * * WED", zone = "Europe/Istanbul")
     //@Scheduled(cron = "0 */1 * * * ?", zone = "Europe/Istanbul")
     public void scheduleTask()
     {

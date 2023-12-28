@@ -20,7 +20,6 @@ public class ExcelReader
 {
     public void readExcelFile(Path filePath, Consumer<Medicine> consumer)
     {
-        // Try with resources closes the file automatically
         try (var file = new FileInputStream(filePath.toFile()); var workbook = new XSSFWorkbook(file))
         {
             var sheet = workbook.getSheetAt(0);

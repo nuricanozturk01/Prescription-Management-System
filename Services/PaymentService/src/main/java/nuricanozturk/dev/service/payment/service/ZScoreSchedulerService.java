@@ -31,8 +31,7 @@ public class ZScoreSchedulerService
     private String m_uniqueKey;
 
 
-    @Scheduled(cron = "0 34 21 * * *", zone = "Europe/Istanbul")
-    //@Scheduled(cron = "0 */5 * * * ?", zone = "Europe/Istanbul")
+    @Scheduled(cron = "0 00 01 * * *", zone = "Europe/Istanbul")
     public void schedule()
     {
         var pharmacies = m_pharmacyService.findAllPharmacies(m_uniqueKey);

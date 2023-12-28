@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="22d47a75-21ea-4915-92ac-447e303bf191" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +38,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "npm.Angular CLI Server.executor": "Run",
-    "ts.external.directory.path": "/Users/nuricanozturk/Desktop/medicineApp/node_modules/typescript/lib",
+    "ts.external.directory.path": "/Applications/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -70,7 +69,7 @@
       <workItem from="1703708956604" duration="3531000" />
       <workItem from="1703752709704" duration="740000" />
       <workItem from="1703753834659" duration="32000" />
-      <workItem from="1703761020960" duration="1012000" />
+      <workItem from="1703761020960" duration="1998000" />
     </task>
     <servers />
   </component>
